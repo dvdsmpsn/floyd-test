@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<script>
+		function openWindow(urlToOpen) {
+			parent.postMessage({
+				'command' : 'openWindow',
+				'url' : urlToOpen
+			}, '*');
+		}
+		function openDialog(title, iFrameUrl) {
+			parent.postMessage( {
+				'command' : 'appDialog',
+				'title' : title,
+				'iFrameUrl' : iFrameUrl
+			}, '*');
+		}
+		</script>
+	</head>
+	<body>
+		
+		<h1>Testing</h1>
+		
+		<h2>Open Window</h1>
+		<ul>
+			<li><a href="javascript:openWindow('https://davidsimpson.me/');">davidsimpson.me</a></li>
+			<li><a href="javascript:openWindow('https://ibm.com');">ibm.com</a></li>
+			<li><a href="javascript:openWindow('https://www.youtube.com/embed/oShTJ90fC34');">YouTube Rimshot</a></li>
+		<ul>
+		
+		<h2>Open Dialog</h1>
+		<ul>
+			<li><a href="javascript:openDialog('ds','https://davidsimpson.me/');">davidsimpson.me</a></li>
+			<li><a href="javascript:openDialog('ibm','https://ibm.com');">ibm.com</a></li>
+			<li><a href="javascript:openDialog('rimshot','https://www.youtube.com/embed/oShTJ90fC34');">YouTube Rimshot</a></li>
+		<ul>
+
+	</body>
+</html>
