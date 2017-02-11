@@ -24,13 +24,13 @@
 			var widgetInstanceId = 'WIDGET_INSTANCE_ID_NOT_SET';
 			
 			window.onload = function() {
-				document.getElementById("host").innerHTML = location.host;
+// 				document.getElementById("host").innerHTML = location.host;
 				try {
 					window.addEventListener('message', function(event) {
 						// In a production environment, it is recommended to check
 						// event.origin to ensure the message is coming from a Connections environment.
 						console.log('Got msg', event.data);
-						document.getElementById('contextId').innerHTML = JSON.stringify(event.data, null, 2);
+// 						document.getElementById('contextId').innerHTML = JSON.stringify(event.data, null, 2);
 
 						if (event.data && event.data.source && event.data.source.widgetInstanceId) {
 							widgetInstanceId = event.data.source.widgetInstanceId;
