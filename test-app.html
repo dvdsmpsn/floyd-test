@@ -1,33 +1,47 @@
 <html>
 	<head>
 		<script>
-		function openWindow(urlToOpen) {
-			parent.postMessage({
-				'command' : 'openWindow',
-				'url' : urlToOpen
-			}, '*');
-		}
-		function openDialog(title, iFrameUrl) {
-			parent.postMessage( {
-				'command' : 'appDialog',
-				'title' : title,
-				'iFrameUrl' : iFrameUrl
-			}, '*');
-		}
+			document.getElementById('contextId').innerHTML = JSON.stringify(event.data, null, 2);
+
+				if (event.data && event.data.source && event.data.source.widgetInstanceId) {
+					widgetInstanceId = event.data.source.widgetInstanceId;
+				}
+					}, false);
+				} catch (e) {
+					console.log(e);
+				}
+				parent.postMessage('appReady', "*");
+			}
+
+			function openWindow(urlToOpen) {
+				parent.postMessage({
+					'command' : 'openWindow',
+					'url' : urlToOpen,
+					'widgetInstanceId': widgetInstanceId
+				}, '*');
+			}
+			function openDialog(title, iFrameUrl) {
+				parent.postMessage( {
+					'command' : 'appDialog',
+					'title' : title,
+					'iFrameUrl' : iFrameUrl,
+					'widgetInstanceId': widgetInstanceId
+				}, '*');
+			}
 		</script>
 	</head>
 	<body>
 		
 		<h1>Testing</h1>
 		
-		<h2>Open Window</h1>
+		<h2>Open Window</h2>
 		<ul>
 			<li><a href="javascript:openWindow('https://davidsimpson.me/');">davidsimpson.me</a></li>
 			<li><a href="javascript:openWindow('https://ibm.com');">ibm.com</a></li>
 			<li><a href="javascript:openWindow('https://www.youtube.com/embed/oShTJ90fC34');">YouTube Rimshot</a></li>
 		</ul>
 		
-		<h2>Open Dialog</h1>
+		<h2>Open Dialog</h2>
 		<ul>
 			<li><a href="javascript:openDialog('ds','https://davidsimpson.me/');">davidsimpson.me</a></li>
 			<li><a href="javascript:openDialog('ibm','https://ibm.com');">ibm.com</a></li>
